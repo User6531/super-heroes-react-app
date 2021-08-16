@@ -1,0 +1,30 @@
+.page {
+    width: 900px;
+    margin: 0 auto;
+    height: 100%;
+    .main {
+        background-image: url("./img/background.jpg");
+        padding-bottom: 50px;
+        padding: 0 40px;
+    }
+    .random-hero-button {
+        background-color: #1F2326;
+        color: white;
+        font-size: 16px;
+
+        border-radius: 15px;
+        padding: 10px 0;
+        margin: 15px 0;
+
+        width: 100%;
+
+        transition: all .5s ease;
+
+        &:hover {
+            box-shadow: 0 0px 8px rgba(31,35,38, 0.5);
+        }
+        &:active {
+            transform: scale(.95);
+        }
+    }
+}

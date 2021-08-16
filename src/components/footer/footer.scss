@@ -1,0 +1,18 @@
+.footer {
+    background-color: white;
+    border-radius: 0 0 32px 32px;
+
+    &-copyright {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    &-copyright-item {
+        color: #1F2326;
+        font-size: 10px;
+        width: 150px;
+    }
+
+
+}
