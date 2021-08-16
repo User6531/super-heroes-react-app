@@ -1,18 +1,17 @@
 import React from 'react';
-import './randomHero.scss';
-import Service from '../../services/services';
+import './randomItem.scss';
 import Spinner from '../spinner/spinner';
 import Error from '../error/error';
 
-export default class RandomHero extends React.Component {
+export default class RandomItem extends React.Component {
 
 
     componentDidMount() {
-        this.updateHero();
-        this.timerUpdateRandomHero = setInterval(this.updateHero, 10000);
+        this.updateItem();
+        this.timerUpdateRandomItem = setInterval(this.updateItem, 10000);
     }
     componentWillUnmount() {
-        clearInterval(this.timerUpdateRandomHero);
+        clearInterval(this.timerUpdateRandomItem);
     }
     componentDidCatch() {
         this.setState({
@@ -22,17 +21,8 @@ export default class RandomHero extends React.Component {
         console.error('componentDidCatch-RandomHero')
     }
 
-    service = new Service();
     state = {
-        id: Math.floor(Math.random()*731 + 1),
-        name: null,
-        fullName: null,
-        gender: null,
-        race: null, 
-        born: null,
-        publisher: null,
-        alignment: null,
-        img: null,
+        item: null,
         loading: true,
         error: false,
         errorMessage: null,
@@ -46,19 +36,13 @@ export default class RandomHero extends React.Component {
         console.error(res)
     }
 
-    updateHero = () => {
+    updateItem = () => {
         const id = Math.floor(Math.random()*731 + 1);
-        this.service.getHero(id)
-        .then(hero=>{
+
+        this.props.service(id)
+        .then(item=>{
             this.setState({
-                name: hero.name,
-                fullName: hero.biography['full-name'],
-                gender: hero.appearance.gender,
-                race: hero.appearance.race, 
-                born: hero.biography['place-of-birth'],
-                publisher: hero.biography.publisher,
-                alignment: hero.biography.alignment,
-                img: hero.image.url,
+                item: item,
                 loading: false,
                 error: false,
             })
@@ -68,8 +52,8 @@ export default class RandomHero extends React.Component {
 
     render() {
 
-        const {loading, error, errorMessage} = this.state;
-        let content = <View hero={this.state} btn={this.updateHero} />;
+        const {item, loading, error, errorMessage} = this.state;
+        let content = <View item={item} btn={this.updateItem} />;
 
         if (loading === true){
             content = <Spinner />
@@ -86,8 +70,8 @@ export default class RandomHero extends React.Component {
     }
 }
 
-const View = ({hero, btn}) => {
-    let {name, fullName, gender, race, born, publisher, alignment, img,} = hero;
+const View = ({item, btn}) => {
+    let {name, fullName, gender, race, born, publisher, alignment, img,} = item;
 
     if (fullName === null || fullName === "") {fullName = '-';}
     if (race === null || race === "null") {race = '-';}
@@ -97,41 +81,41 @@ const View = ({hero, btn}) => {
     if (alignment === null) {alignment = '-';}
 
     return (
-        <div className="wrapper-random-hero">
-            <div className="random-hero">
-                <h2 className="random-hero__name">Random Hero: <span>{name}</span></h2>
-                <ul className="random-hero__group-list">
-                    <li className="random-hero__group-list__item">
+        <div className="wrapper-random-item">
+            <div className="random-item">
+                <h2 className="random-item__name">Random Hero: <span>{name}</span></h2>
+                <ul className="random-item__group-list">
+                    <li className="random-item__group-list__item">
                         <h6>Full Name</h6>
                         <span>{fullName}</span>
                     </li>
-                    <li className="random-hero__group-list__item">
+                    <li className="random-item__group-list__item">
                         <h6>Gender</h6>
                         <span>{gender}</span>
                     </li>
-                    <li className="random-hero__group-list__item">
+                    <li className="random-item__group-list__item">
                         <h6>Race</h6>
                         <span>{race}</span>
                     </li>
-                    <li className="random-hero__group-list__item">
+                    <li className="random-item__group-list__item">
                         <h6>Place Of Birth</h6>
                         <span>{born}</span>
                     </li>
-                    <li className="random-hero__group-list__item">
+                    <li className="random-item__group-list__item">
                         <h6>Publisher</h6>
                         <span>{publisher}</span>
                     </li>
-                    <li className="random-hero__group-list__item">
+                    <li className="random-item__group-list__item">
                         <h6>Alignment</h6>
                         <span>{alignment}</span>
                     </li>
                 </ul>
                 <button
-                    className="random-hero__btn"
+                    className="random-item__btn"
                     onClick={btn}
                 >Change hero</button>
             </div>
-            <img src={img} alt="hero img" className="random-hero__img"></img>
+            <img src={img} alt="item img" className="random-item__img"></img>
         </div>
     )
 }

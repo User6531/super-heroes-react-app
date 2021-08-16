@@ -16,12 +16,12 @@ $color_dark: #1F2326;
     top: -10px;
 }
 
-.wrapper-random-hero {
+.wrapper-random-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .random-hero {
+    .random-item {
         @extend %whiteBlock;
         max-width: 50%;
         min-width: 40%;    
@@ -72,7 +72,7 @@ $color_dark: #1F2326;
         }
     }
 
-    .random-hero__img {
+    .random-item__img {
         @extend %whiteBlock;    
         padding: 5px;
         width: 300px;

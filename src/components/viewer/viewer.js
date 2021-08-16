@@ -1,33 +1,25 @@
 import React from 'react';
-import './hero.scss';
-import Service from '../../services/services';
+import './viewer.scss';
 import Error from '../error/error';
 
-export default class Hero extends React.Component {
+export default class Viewer extends React.Component {
 
     componentDidUpdate(prevProps) {
-        if (this.props.heroId === prevProps.heroId) {return}
-        this.updateHero();
+        if (this.props.itemId === prevProps.itemId) {return}
+        this.updateItem();
     }
 
     componentDidCatch() {
         this.setState({
             error: true,
-            errorMessage: 'componentDidCatch-Hero',
+            errorMessage: 'componentDidCatch-Viewer',
         });
-        console.error('componentDidCatch-Hero')
+        console.error('componentDidCatch-Viewer')
     }
 
-    service = new Service();
     state = {
-        name: null,
-        fullName: null,
-        gender: null,
-        race: null, 
-        born: null,
-        publisher: null,
-        alignment: null,
-        img: null,
+        item: null,
+        loading: false,
         error: false,
         errorMessage: null,
     }
@@ -40,33 +32,24 @@ export default class Hero extends React.Component {
         console.error(res)
     }
 
-    updateHero = () => {
-        const {heroId} = this.props;
-        if (!heroId) {return}
-        this.service.getHero(heroId)
-        .then(hero=>{
-            this.setState({
-                name: hero.name,
-                fullName: hero.biography['full-name'],
-                gender: hero.appearance.gender,
-                race: hero.appearance.race, 
-                born: hero.biography['place-of-birth'],
-                publisher: hero.biography.publisher,
-                alignment: hero.biography.alignment,
-                img: hero.image.url,
-                loading: false,
-                error: false,
+    updateItem = () => {
+        const {itemId} = this.props;
+        if (!itemId) {return}
+        this.props.service(itemId)
+            .then(item=>{
+                this.setState({
+                    item: item
+                });
             })
-        })
-        .catch(res=>this.error(res));
+            .catch(res=>this.error(res));
     }
 
     render() {
-        const {name, error, errorMessage} = this.state;
-        let content = <View hero={this.state} btn={this.updateHero} />;
+        const {item, error, errorMessage} = this.state;
+        let content = <View item={item} />;
 
-        if (!name) {
-            content = <ChooseHero />
+        if (!item) {
+            content = <ChooseItem />
         }
 
         if (error === true){
@@ -81,8 +64,8 @@ export default class Hero extends React.Component {
     }
 }
 
-const View = ({hero}) => {
-    let {name, fullName, gender, race, born, publisher, alignment, img,} = hero;
+const View = ({item}) => {
+    let {name, fullName, gender, race, born, publisher, alignment, img,} = item;
 
     if (fullName === null || fullName === "") {fullName = '-';}
     if (race === null || race === "null") {race = '-';}
@@ -127,8 +110,8 @@ const View = ({hero}) => {
     )
 }
 
-const ChooseHero = () => {
+const ChooseItem = () => {
     return (
-            <span className="choose-hero">🠕 Please select a hero! 🠕</span>
+            <span className="choose-item">🠕 Please select a hero! 🠕</span>
     )
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import Header from '../header/header';
 import "./app.scss"; 
-import RandomHero from '../randomHero/randomHero';
-import HeroList from '../heroList/heroList';
-import Hero from '../hero/hero';
+import RandomItem from '../randomItem/randomItem';
+import ItemList from '../itemList/itemList';
+import Viewer from '../viewer/viewer';
 import Footer from '../footer/footer';
 import Error from '../error/error';
+import Service from '../../services/services';
+
 
 export default class App extends React.Component {
 
@@ -17,56 +19,73 @@ export default class App extends React.Component {
     });
   }
 
+  service = new Service();
   state = {
-    showRandomHero: false,
-    heroId: null,
+    showRandomItem: false,
+    itemId: null,
     error: false,
     errorMessage: null,
   }
 
-  toogleRandomHero = () => {
+  toogleRandomItem = () => {
     this.setState(prevState=>({
-      showRandomHero: !prevState.showRandomHero,
+      showRandomItem: !prevState.showRandomItem,
     }));
 
   }
 
-  changeHero = (id) => {
+  updateViewer = (id) => {
     this.setState({
-      heroId: id,
+      itemId: id,
     })
   }
   
   render() {
-    const {showRandomHero, heroId, error, errorMessage} = this.state;
+    const {showRandomItem, itemId, error, errorMessage} = this.state;
 
     if (error) {
-      return <Error />
+      return <Error errorMessage={errorMessage}/>
     }
 
-
-    let randomHeroText, randomHero;
-    if (showRandomHero === false) {
-      randomHeroText = '▼ Open Random Hero'; 
-      randomHero = null;
+    let randomItemBtnText, randomItem;
+    if (showRandomItem === false) {
+      randomItemBtnText = '▼ Open Random Hero'; 
+      randomItem = null;
     } else {
-      randomHeroText = '✖ Close Random Hero';
-      randomHero = <RandomHero errorMessage={errorMessage}/>;
+      randomItemBtnText = '✖ Close Random Hero';
+      randomItem = <RandomItem service={this.service.getHero}/>;
     }
+
+    const btnRandomItem = <button 
+                            className="random-item-button"
+                            onClick={this.toogleRandomItem}
+                          >{randomItemBtnText}</button>
+
+    const itemList = <ItemList 
+                      updateViewer={(id)=> this.updateViewer(id)}
+                      service = {this.service.getAllHeroes}
+                     />
+
+    const itemViewer = <Viewer
+                    itemId={itemId}
+                    service = {this.service.getHero}
+                   />
+
 
     return (
       <div className="page">
-        <Header />
-        <div className="main">
-          <button 
-            className="random-hero-button"
-            onClick={this.toogleRandomHero}
-          >{randomHeroText}</button>
-          {randomHero}
-          <HeroList changeHero={(id)=> this.changeHero(id)}/>
-          <Hero heroId={heroId}/>
-        </div>
-        <Footer />
+          <Header />
+          <div className="main">
+              <div className="random-item">
+                  {btnRandomItem}
+                  {randomItem}
+              </div>
+              <div className="selected-item">
+                  {itemList}
+                  {itemViewer}
+              </div>
+          </div>
+          <Footer />
       </div>
     )
   }
