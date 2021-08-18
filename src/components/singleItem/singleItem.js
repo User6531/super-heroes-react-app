@@ -10,10 +10,8 @@ import {Link} from 'react-router-dom';
 export default class SingleItem extends React.Component {
 
     service = new Service();
-
     componentDidMount() {
-        const {id}= this.props;
-        this.service.getHero(id)
+        this.service.getHero(this.props.id)
             .then(item=>{
                 this.setState({
                     item: item,
@@ -39,6 +37,7 @@ export default class SingleItem extends React.Component {
       }
 
     state = {
+        id: null,
         item: null,
         error: false,
         errorMessage: '',
