@@ -2,11 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .hero-small-img {
     display: block;
     margin: 10px;
     width: 100px;
-
+    cursor: pointer;
 }

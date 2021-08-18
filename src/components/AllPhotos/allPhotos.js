@@ -1,6 +1,8 @@
 import React from 'react';
 import './allPhotos.scss';
 import Error from '../error/error';
+import {Link} from 'react-router-dom';
+
 
 export default class AllPhotos extends React.Component {
 
@@ -44,9 +46,11 @@ export default class AllPhotos extends React.Component {
     createAllItem = (item) => {
         if (!item) {return}
         return item.map(elem=>{
-            
+
             return (
-                <View obj={elem} key={elem.id}/>
+                <Link to={`/all/${elem.id}`}>
+                    <View obj={elem} key={elem.id}/>
+                </Link>
             )
         });
 

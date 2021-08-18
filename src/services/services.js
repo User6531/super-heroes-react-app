@@ -33,6 +33,15 @@ export default class Service {
             publisher: response.biography.publisher,
             alignment: response.biography.alignment,
             img: response.image.url,
+            eyeColor: response.appearance['eye-color'],
+            hairColor: response.appearance['hair-color'],
+            height: response.appearance.height,
+            combat: response.combat,
+            durability: response.powerstats.durability,
+            intelligence: response.powerstats.intelligence,
+            power: response.powerstats.power,
+            speed: response.powerstats.speed,
+            strength: response.powerstats.strength,
         }
     }
 }

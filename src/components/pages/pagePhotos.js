@@ -1,6 +1,7 @@
 import React from 'react';
 import AllPhotos from '../AllPhotos/allPhotos';
 import Service from '../../services/services';
+import Error from '../error/error';
 
 
 export default class pagePhotos extends React.Component {
@@ -36,7 +37,12 @@ export default class pagePhotos extends React.Component {
   }
   
   render() {
-    const {allItemData} = this.state;
+    const {allItemData, error, errorMessage} = this.state;
+
+    if (error) {
+      return <Error errorMessage={errorMessage}/>
+    }
+
 
     return (
       <>
