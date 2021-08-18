@@ -2,6 +2,8 @@ export default class Service {
 
     _apiBaseSingleHeroe = 'https://www.superheroapi.com/api.php/4086650971446174/';
     _apiBaseAllHeroes = 'https://akabab.github.io/superhero-api/api/all.json';
+    _apiBasePhotoOfDay = 'https://api.nasa.gov/planetary/apod?api_key=fLpFz2aflWuemZoAqecqd83CNFQfHs9yGpFdDcqI';
+    
 
     getResource = async (url) => {
         const res = await fetch(url);
@@ -21,7 +23,6 @@ export default class Service {
         const res = await this.getResource(`${this._apiBaseSingleHeroe}${id}`);
         return this.editHeroResponce(res);
     }
-    
     editHeroResponce = (response) => {
         return {
             name: response.name,
@@ -34,23 +35,8 @@ export default class Service {
             img: response.image.url,
         }
     }
-
-    
 }
 
-
-
-
-                    // name: hero.name,
-                    // fullName: hero.biography['full-name'],
-                    // gender: hero.appearance.gender,
-                    // race: hero.appearance.race, 
-                    // born: hero.biography['place-of-birth'],
-                    // publisher: hero.biography.publisher,
-                    // alignment: hero.biography.alignment,
-                    // img: hero.image.url,
-                    // loading: false,
-                    // error: false,       
-
+                
 
 

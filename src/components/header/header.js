@@ -10,9 +10,9 @@ export default class Header extends React.Component {
            <div className="header">
                 <h1 className="header-logo">SuperHero Encyclopedia</h1>
                 <ul className ="header-navbar">
-                    <li className ="header-navbar-item">Character</li>
-                    <li className ="header-navbar-item">Houses</li>
-                    <li className ="header-navbar-item">Books</li>
+                    <li className ="header-navbar-item">Random</li>
+                    <li className ="header-navbar-item">Search</li>
+                    <li className ="header-navbar-item">Photos</li>
                 </ul>
            </div>
         )

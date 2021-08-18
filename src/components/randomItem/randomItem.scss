@@ -20,6 +20,7 @@ $color_dark: #1F2326;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 0;
 
     .random-item {
         @extend %whiteBlock;
