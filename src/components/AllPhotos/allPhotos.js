@@ -47,7 +47,7 @@ export default class AllPhotos extends React.Component {
         if (!item) {return}
         return item.map(elem=>{
             return (
-                <Link to={`/all/${elem.id}`} key={elem.id}>
+                <Link to={`/super-heroes-react-app/all/${elem.id}`} key={elem.id}>
                     <View obj={elem} />
                 </Link>
             )

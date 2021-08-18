@@ -57,7 +57,7 @@ export default class SingleItem extends React.Component {
         
         return(
             <>
-                <Link to={`/all/`}>
+                <Link to={`/super-heroes-react-app/all/`}>
                     <button className="btn-back">🠔  Back</button>
                 </Link>
                 <View item={item}/>

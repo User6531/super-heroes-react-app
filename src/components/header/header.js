@@ -12,13 +12,13 @@ export default class Header extends React.Component {
                 <h1 className="header-logo">SuperHero Encyclopedia</h1>
                 <ul className ="header-navbar">
                     <li className ="header-navbar-item">
-                        <Link to="/">List</Link>
+                        <Link to="/super-heroes-react-app">List</Link>
                     </li>
                     <li className ="header-navbar-item">
-                        <Link to="/search">Search</Link>
+                        <Link to="/super-heroes-react-app/search">Search</Link>
                     </li>
                     <li className ="header-navbar-item">
-                        <Link to="/all/">All</Link>
+                        <Link to="/super-heroes-react-app/all/">All</Link>
                     </li>
                 </ul>
            </div>

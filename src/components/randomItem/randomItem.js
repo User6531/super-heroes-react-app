@@ -7,6 +7,7 @@ export default class RandomItem extends React.Component {
 
 
     componentDidMount() {
+        
         this.updateItem();
         this.timerUpdateRandomItem = setInterval(this.updateItem, 10000);
     }
@@ -37,8 +38,10 @@ export default class RandomItem extends React.Component {
     }
 
     updateItem = () => {
+        this.setState({
+            loading: true,
+        })
         const id = Math.floor(Math.random()*731 + 1);
-
         this.props.service(id)
         .then(item=>{
             this.setState({
@@ -51,16 +54,20 @@ export default class RandomItem extends React.Component {
     }
 
     render() {
-
         const {item, loading, error, errorMessage} = this.state;
-        let content = <View item={item} btn={this.updateItem} />;
 
+        let content;
+        if (item){
+            content = <View item={item} btn={this.updateItem} />;
+        }
         if (loading === true){
             content = <Spinner />
         } 
         if (error === true){
             content = <Error errorMessage={errorMessage}/>
         }
+        
+        
 
         return (
             <>
@@ -72,6 +79,10 @@ export default class RandomItem extends React.Component {
 
 const View = ({item, btn}) => {
     let {name, fullName, gender, race, born, publisher, alignment, img,} = item;
+
+    const imgError = (event) => {
+        event.target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
+    } 
 
     if (fullName === null || fullName === "") {fullName = '-';}
     if (race === null || race === "null") {race = '-';}
@@ -115,7 +126,7 @@ const View = ({item, btn}) => {
                     onClick={btn}
                 >Change hero</button>
             </div>
-            <img src={img} alt="item img" className="random-item__img"></img>
+            <img onError={imgError} src={img} alt="item img" className="random-item__img"></img>
         </div>
     )
 }

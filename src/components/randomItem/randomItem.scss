@@ -24,8 +24,7 @@ $color_dark: #1F2326;
 
     .random-item {
         @extend %whiteBlock;
-        max-width: 50%;
-        min-width: 40%;    
+        width: 50%;    
 
         &__name {
             text-align: center;

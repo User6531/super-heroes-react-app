@@ -67,10 +67,10 @@ export default class App extends React.Component {
                   {randomItem}
               </div>
 
-              <Route path='/' exact component={PageList} />
-              <Route path='/search' exact component={PageSearch} />
-              <Route path='/all' exact component={PagePhotos} />
-              <Route path='/all/:id' exact render={
+              <Route path='/super-heroes-react-app' exact component={PageList} />
+              <Route path='/super-heroes-react-app/search' exact component={PageSearch} />
+              <Route path='/super-heroes-react-app/all' exact component={PagePhotos} />
+              <Route path='/super-heroes-react-app/all/:id' exact render={
                 ({match}) => {
                   const {id} = match.params;
                   return <SingleItem id={id}/>
