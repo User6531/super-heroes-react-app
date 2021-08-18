@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/super-heroes-react-app/static/css/main.f419c594.chunk.css",
-    "main.js": "/super-heroes-react-app/static/js/main.6f52f28d.chunk.js",
-    "main.js.map": "/super-heroes-react-app/static/js/main.6f52f28d.chunk.js.map",
+    "main.js": "/super-heroes-react-app/static/js/main.c028e461.chunk.js",
+    "main.js.map": "/super-heroes-react-app/static/js/main.c028e461.chunk.js.map",
     "runtime-main.js": "/super-heroes-react-app/static/js/runtime-main.ccbd0be4.js",
     "runtime-main.js.map": "/super-heroes-react-app/static/js/runtime-main.ccbd0be4.js.map",
-    "static/js/2.3f195bc8.chunk.js": "/super-heroes-react-app/static/js/2.3f195bc8.chunk.js",
-    "static/js/2.3f195bc8.chunk.js.map": "/super-heroes-react-app/static/js/2.3f195bc8.chunk.js.map",
+    "static/js/2.a3d6809d.chunk.js": "/super-heroes-react-app/static/js/2.a3d6809d.chunk.js",
+    "static/js/2.a3d6809d.chunk.js.map": "/super-heroes-react-app/static/js/2.a3d6809d.chunk.js.map",
     "index.html": "/super-heroes-react-app/index.html",
     "static/css/main.f419c594.chunk.css.map": "/super-heroes-react-app/static/css/main.f419c594.chunk.css.map",
-    "static/js/2.3f195bc8.chunk.js.LICENSE.txt": "/super-heroes-react-app/static/js/2.3f195bc8.chunk.js.LICENSE.txt",
+    "static/js/2.a3d6809d.chunk.js.LICENSE.txt": "/super-heroes-react-app/static/js/2.a3d6809d.chunk.js.LICENSE.txt",
     "static/media/app.scss": "/super-heroes-react-app/static/media/background.e5df1a54.jpg",
     "static/media/pngwing.com.876a4035.png": "/super-heroes-react-app/static/media/pngwing.com.876a4035.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ccbd0be4.js",
-    "static/js/2.3f195bc8.chunk.js",
+    "static/js/2.a3d6809d.chunk.js",
     "static/css/main.f419c594.chunk.css",
-    "static/js/main.6f52f28d.chunk.js"
+    "static/js/main.c028e461.chunk.js"
   ]
 }
