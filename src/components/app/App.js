@@ -7,27 +7,11 @@ import Viewer from '../viewer/viewer';
 import Footer from '../footer/footer';
 import Error from '../error/error';
 import Service from '../../services/services';
-import Search from '../search/search';
-import AllItem from '../allItem/allItem';
-import AllPhotos from '../AllPhotos/allPhotos';
+import PageSearch from '../pages/pageSearch';
+import PagePhotos from '../pages/pagePhotos';
 
 export default class App extends React.Component {
   service = new Service();
-
-  componentDidMount() {
-    this.service.getAllHeroes()
-      .then(res=>{
-        this.setState({
-          allItemData: res,
-        });
-      })
-      .catch(res=>{
-        this.setState({
-          error: true,
-          errorMessage: res,
-        });
-      });
-  }
 
   componentDidCatch() {
     console.error('componentDidCatch-App');
@@ -59,27 +43,8 @@ export default class App extends React.Component {
     })
   }
 
-  onChange = (value) => {
-    this.setState({
-      searchValue: value,
-    })
-  }
-
-
-  onSearch = (value, data) => {
-    if (value.length < 1) {
-        return data
-    }
-    const res = data.filter(item => {
-      console.log(item.name.toLowerCase().indexOf(value.toLowerCase()) > -1);
-      return item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
-    });
-
-    return res
-  }
-
   render() {
-    const {showRandomItem, itemId, error, errorMessage, searchValue, allItemData} = this.state;
+    const {showRandomItem, itemId, error, errorMessage} = this.state;
 
     if (error) {
       return <Error errorMessage={errorMessage}/>
@@ -109,40 +74,25 @@ export default class App extends React.Component {
                         service = {this.service.getHero}
                        />;
 
-    const search = <Search 
-                      onChange={(value)=>this.onChange(value)}
-                   />;
-
-    const allItem = <AllItem 
-                      data = {this.onSearch(searchValue, allItemData)}
-                      searchValue={searchValue}
-                    />
-
-    const allPhotos = <AllPhotos 
-                      data = {allItemData}
-                    />
+    const pageOne = <PageSearch />
+    const pageTwo = <PagePhotos />
 
     return (
       <div className="page">
           <Header />
           <div className="main">
 
-              <div className="random-item">
-                  {btnRandomItem}
-                  {randomItem}
-              </div>
-              <div className="selected-item">
-                  {itemList}
-                  {itemViewer}
-              </div>
-
-
-
-              {/* {search}
-              {allItem} */}
-
-
-              {/* {allPhotos} */}
+            <div className="random-item">
+                {btnRandomItem}
+                {randomItem}
+            </div>
+            <div className="selected-item">
+              {itemList}
+              {itemViewer}
+            </div>
+              
+            {pageOne}
+            {pageTwo}
 
 
           </div>
@@ -151,7 +101,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-// (function() {
-
-// })();

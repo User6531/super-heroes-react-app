@@ -57,6 +57,10 @@ export default class AllItem extends React.Component {
         const {item, error, errorMessage, searchValue} = this.state;
         let content = this.createAllItem(item);
 
+        if (content && content.length < 1) {
+            content = <NoResults />
+        }   
+
         if (searchValue < 1) {
             content = <ChooseItem />
         }
@@ -121,6 +125,12 @@ const View = ({obj}) => {
 
 const ChooseItem = () => {
     return (
-            <span className="choose-item">🠕 Please start typing something 🠕</span>
+            <span className="choose-item">🠕 Start typing name of hero 🠕</span>
+    )
+}
+
+const NoResults = () => {
+    return (
+            <span className="choose-item">No results</span>
     )
 }
